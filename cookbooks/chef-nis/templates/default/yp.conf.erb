@@ -1,0 +1,18 @@
+#
+# yp.conf Configuration file for the ypbind process. You can define
+#   NIS servers manually here if they can't be found by
+#   broadcasting on the local net (which is the default).
+#
+#   See the manual page of ypbind for the syntax of this file.
+#
+# IMPORTANT:  For the "ypserver", use IP addresses, or make sure that
+#   the host is in /etc/hosts. This file is only interpreted
+#   once, and if DNS isn't reachable yet the ypserver cannot
+#   be resolved and ypbind won't ever bind to the server.
+#
+# Note: This file is managed by Chef.  Local modifications will be OVERWRITTEN
+#       on the next invocation of the Chef client.
+
+<% for ypserver in Array(@servers) do %>
+domain <%= @domain %> server <%= ypserver['ip'] %>  # <%= ypserver['hostname'] %>
+<% end -%>
