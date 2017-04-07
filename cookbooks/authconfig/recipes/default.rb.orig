@@ -38,7 +38,7 @@ when 'redhat', 'centos', 'scientific'
       sssd_action = 'install'
     when false
       sssd_action = 'remove'
-      #nslcd_enable = true
+      nslcd_enable = true
     end
     authconfig_action = 'install'
   when 5
