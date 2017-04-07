@@ -1,0 +1,23 @@
+# 
+# /etc/nsswitch.conf
+#
+# Managed by Chef.  Local modifications WILL BE LOST on the next run of the Chef
+# client.
+#
+
+passwd:         <%= @passwd %>
+group:          <%= @group %>
+shadow:         <%= @shadow %>
+
+hosts:          <%= @hosts %>
+networks:       <%= @networks %>
+
+protocols:      <%= @protocols %>
+services:       <%= @services %>
+ethers:         <%= @ethers %>
+rpc:            <%= @rpc %>
+
+netgroup:       <%= @netgroup %>
+
+automount:      <%= @automount %>
+aliases:        <%= @aliases %>
