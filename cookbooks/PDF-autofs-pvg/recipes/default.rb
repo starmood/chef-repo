@@ -11,8 +11,8 @@
   end
 end
 
-cookbook_file "/etc/auto.master" do
-        source "auto.master"
+template "/etc/auto.master" do
+        source "auto.master.erb"
         mode "0644"
 end
 
