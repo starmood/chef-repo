@@ -18,7 +18,7 @@ end
 %w{snmpd}.each do |service|
  
   service service do
-    action [ :enable, :start, :reload ]
+    action [ :enable, :restart ]
   end
 end
 
