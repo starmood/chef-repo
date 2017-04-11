@@ -13,7 +13,7 @@ when 'redhat', 'centos'
 
 		end
 
-		template "/etc/xinet.d/nrpe" do
+		template "/etc/xinetd.d/nrpe" do
 		        source "nrpe.erb"
 		        mode "0644"
 			owner "root"
