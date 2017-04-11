@@ -16,9 +16,12 @@ when 'redhat', 'centos'
 		template "/etc/xinet.d/nrpe" do
 		        source "nrpe.erb"
 		        mode "0644"
-	        	variables(
-      	 	         only_from: node['PDF-nagios']['nrpe']['only_from']
-	       		 )
+			owner "root"
+			group "root"
+	        	variables({
+      	 	        	only_from: node['PDF-nagios']['nrpe']['only_from']
+			}
+	       		)
 		end
 	else
 		Chef::Log.info( "PDF-Nagios: Only support Redhat/CentOS version 5,6,7 at this time." )
