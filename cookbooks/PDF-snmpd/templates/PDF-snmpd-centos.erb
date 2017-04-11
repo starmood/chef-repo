@@ -52,7 +52,6 @@ syscontact Root <root@localhost> (configure /etc/snmp/snmp.local.conf)
 #
 <% for community in Array(@rocommunity) do %>
 com2sec notConfigUser  default	<%= community %>	# from Chef
-
 <% end -%>
 
 group   notConfigGroup v1           notConfigUser
