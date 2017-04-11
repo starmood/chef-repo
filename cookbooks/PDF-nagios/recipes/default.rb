@@ -6,13 +6,12 @@
 
 case node['platform']
 when 'redhat', 'centos'
-	case case node['platform_version'].to_i
+	case node['platform_version'].to_i
 	when 5,7
 		link '/tools/pvglocal/nagios/linux_2.6_x64_rh5' do
 			to '/opt/nagios'
 
 		end
-
 
 		template "/etc/xinet.d/nrpe" do
 		        source "nrpe.erb"
