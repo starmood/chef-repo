@@ -41,7 +41,7 @@ ruby_block "insert_line" do
   end
 end
 
-%w{xinetd,openssl-devel}.each do |package|
+%w{xinetd openssl-devel}.each do |package|
  
   package package do
     action :install
