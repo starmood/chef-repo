@@ -11,7 +11,7 @@ template "/etc/snmp/snmpd.conf" do
         source "PDF-snmpd-centos.erb"
         mode "0644"
 	variables(
-		rocommunity: node['PDF-snmpd']['rocommunity']
+		rocommunity: node['PDF-snmpd']['v1rocommunity']
 	)
 end
 
