@@ -36,7 +36,7 @@ end
 ruby_block "insert_line" do
   block do
     file = Chef::Util::FileEdit.new("/etc/services")
-    file.insert_line_if_no_match("/nrpe/", "nrpe            5666/tcp                        # NRPE")
+    file.insert_line_if_no_match(/nrpe/, "nrpe            5666/tcp                        # NRPE")
     file.write_file
   end
 end
