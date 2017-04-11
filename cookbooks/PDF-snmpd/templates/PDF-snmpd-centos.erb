@@ -50,7 +50,7 @@ syscontact Root <root@localhost> (configure /etc/snmp/snmp.local.conf)
 #
 # Unknown directives read in from other files by snmpconf
 #
-<% for community in Array(@node[:PDF-snmpd][:rocommunity]) do %>
+<% for community in Array(@rocommunity) do %>
 com2sec notConfigUser  default	<%= community %>	# from Chef
 
 <% end -%>

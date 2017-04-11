@@ -10,6 +10,9 @@ end
 template "/etc/snmp/snmpd.conf" do
         source "PDF-snmpd-centos.erb"
         mode "0644"
+	variables(
+		rocommunity: node[:PDF-snmpd][:rocommunity]
+	)
 end
 
 %w{snmpd}.each do |service|
