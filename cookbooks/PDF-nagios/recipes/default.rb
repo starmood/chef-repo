@@ -8,8 +8,8 @@ case node['platform']
 when 'redhat', 'centos'
 	case node['platform_version'].to_i
 	when 5,6,7
-		link '/tools/pvglocal/nagios/linux_2.6_x64_rh5' do
-			to '/opt/nagios'
+		link '/opt/nagios' do
+			to '/tools/pvglocal/nagios/linux_2.6_x64_rh5'
 
 		end
 
