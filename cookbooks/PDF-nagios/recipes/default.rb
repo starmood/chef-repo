@@ -40,3 +40,11 @@ ruby_block "insert_line" do
     file.write_file
   end
 end
+
+
+%w{xinetd}.each do |service|
+ 
+  service service do
+    action [ :enable, :restart ]
+  end
+end
