@@ -41,6 +41,12 @@ ruby_block "insert_line" do
   end
 end
 
+%w{xinetd}.each do |package|
+ 
+  package package do
+    action :install
+  end
+end
 
 %w{xinetd}.each do |service|
  
