@@ -12,6 +12,14 @@ when 'redhat', 'centos'
 		        source "yum-repo-dell.erb"
 		        mode "0644"
 		end
+
+                %w{srvadmin-all}.each do |package|
+
+                  package package do
+                        action :install
+                  end
+                end
+
 	else 
                 Chef::Log.info( "PDF-Nagios: Only support Redhat/CentOS version 6,7 at this time." )
                 return
