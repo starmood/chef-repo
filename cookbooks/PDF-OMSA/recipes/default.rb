@@ -17,6 +17,7 @@ when 'redhat', 'centos'
 
                   package package do
                         action :install
+			timeout 5400
                   end
                 end
 
