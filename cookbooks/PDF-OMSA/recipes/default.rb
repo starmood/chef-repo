@@ -4,9 +4,20 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
+if !node['system']['manufacturer']
+	Chef::Log.info( "PDF-OMSA: Can not detect hardware manufacturer." )
+	return
+end
+
+if !node['system']['product_name']
+        Chef::Log.info( "PDF-OMSA: Can not detect hardware model." )
+        return
+end
+
+
 case node['platform']
 when 'redhat', 'centos'
-
+  
   case node['system']['manufacturer']
   when /Dell/i
     case node['system']['product_name']
