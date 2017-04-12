@@ -21,6 +21,10 @@ when 'redhat', 'centos'
                   end
                 end
 
+		execute 'start_omsa' do
+			command '/opt/dell/srvadmin/sbin/srvadmin-services.sh start'
+		end
+
 	else 
                 Chef::Log.info( "PDF-Nagios: Only support Redhat/CentOS version 6,7 at this time." )
                 return
