@@ -31,6 +31,13 @@ when 'redhat', 'centos'
 			command '/opt/dell/srvadmin/sbin/srvadmin-services.sh start'
 		end
 
+		%w{snmpd}.each do |service|
+ 
+		  service service do
+		    action [ :restart ]
+		  end
+		end
+
 	else 
                 Chef::Log.info( "PDF-OMSA: Only support Redhat/CentOS version 6,7 at this time." )
                 return
