@@ -12,6 +12,7 @@ service "ypbind" do
 end
 
 service "ypbind-enable" do
+	service_name	'ypbind'
 	action :enable
 	notifies :restart, "service[ypbind]", :immediately
 end
