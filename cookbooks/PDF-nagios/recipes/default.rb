@@ -46,7 +46,6 @@ when 'redhat', 'centos'
                         only_from: node['PDF-nagios']['nrpe']['only_from']
                 }
                 )
-		notifies :restart, "service[xinetd]", :immediately
         end
 
 else
@@ -60,6 +59,7 @@ ruby_block "insert_line" do
     file.insert_line_if_no_match(/nrpe/, "nrpe            5666/tcp                        # NRPE")
     file.write_file
   end
+  notifies :restart, "service[xinetd]", :immediately
 end
 
 service "xinetd" do
