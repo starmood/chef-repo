@@ -14,11 +14,10 @@ end
 template "/etc/auto.master" do
         source "auto.master.erb"
         mode "0644"
+	notifies :restart, "service[autofs]", :immediately
 end
 
-%w{autofs rpcbind nfs}.each do |service|
- 
-  service service do
-    action [ :enable, :restart ]
-  end
+service "autofs" do
+        action :nothing
 end
+
