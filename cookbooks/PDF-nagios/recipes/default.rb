@@ -46,6 +46,7 @@ when 'redhat', 'centos'
                         only_from: node['PDF-nagios']['nrpe']['only_from']
                 }
                 )
+		notifies :restart, "service[xinetd]", :immediately
         end
 
 else
@@ -61,9 +62,7 @@ ruby_block "insert_line" do
   end
 end
 
-%w{xinetd}.each do |service|
- 
-  service service do
-    action [ :enable, :restart ]
-  end
+service "xinetd" do
+	action :nothing
 end
+
