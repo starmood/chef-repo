@@ -5,10 +5,14 @@
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
 
-include_recipe 'nis"
+include_recipe 'nis'
 
-%w{ypbind}.each do |service|
-  service service do
-    action [ :enable, :restart ]
-  end
+service "ypbind" do
+	action :nothing
 end
+
+service "ypbind-enable" do
+	action :enable
+	notifies :restart, "service[ypbind]", :immediately
+end
+
