@@ -20,13 +20,13 @@ end
 
 maliases = node["PDF-generic"]["mail_alias"]
 
-ruby_block "insert_line" do
-block do
-	maliases.each do |malias|
+maliases.each do |malias|
+	ruby_block "insert_line" do
+	block do
 		file = Chef::Util::FileEdit.new("/etc/aliases")
 		file.insert_line_if_no_match(/#{malias}/, "#{malias}")
 		file.insert_line_if_no_match(/#{malias}/, "abc")
 		file.write_file
 	end
-end
+	end
 end
