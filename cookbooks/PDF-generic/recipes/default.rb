@@ -25,7 +25,7 @@ maliases.each do |malias|
 	block do
 		file = Chef::Util::FileEdit.new("/etc/aliases")
 		file.insert_line_if_no_match(/#{malias}/, "#{malias}")
-		file.insert_line_if_no_match(/#{malias}/, "abc")
+		file.insert_line_if_no_match(/"abc"/, "abc")
 		file.write_file
 	end
 	end
