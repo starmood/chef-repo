@@ -18,13 +18,13 @@ end
 
 ### 2. Add alias
 
-aliases = node["PDF-generic"]["mail_alias"]
+maliases = node["PDF-generic"]["mail_alias"]
 
-aliases.each do |alias|
+maliases.each do |malias|
 	ruby_block "insert_line" do
 	  block do
 	    file = Chef::Util::FileEdit.new("/etc/aliases")
-	    file.insert_line_if_no_match(/#{alias}/, #{alias})
+	    file.insert_line_if_no_match(/#{malias}/, #{malias})
 	    file.write_file
 	  end
 	end
