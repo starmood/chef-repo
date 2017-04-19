@@ -52,4 +52,21 @@ user "Set root password" do
 
 end
 
+### 4. Add root SSH key file
 
+directory '/root/.ssh' do
+	owner 'root'
+	group 'root'
+	mode '0700'
+	action :create
+end
+
+template "/root/.ssh/authorized_keys" do
+	source "authorized_keys_root.erb"
+	owner "root"
+	group "root"
+	mode "0600"
+end
+
+### 5. set NTP servers
+include_recipe 'ntp'
