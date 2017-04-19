@@ -53,6 +53,10 @@ else
 	return
 end
 
+service "xinetd" do
+        action :nothing
+end
+
 ruby_block "insert_line" do
   block do
     file = Chef::Util::FileEdit.new("/etc/services")
@@ -60,9 +64,5 @@ ruby_block "insert_line" do
     file.write_file
   end
   notifies :restart, "service[xinetd]", :immediately
-end
-
-service "xinetd" do
-	action :nothing
 end
 
