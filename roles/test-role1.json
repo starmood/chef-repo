@@ -1,0 +1,81 @@
+{
+  "name": "test-role1",
+  "description": "",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "PDF-generic": {
+      "domain": "pvg",
+      "mail_alias": [
+        "root:   pvgadm@pdf.com"
+      ],
+      "disable_services": [
+        "canna",
+        "hpoj",
+        "isdn",
+        "NetworkManager"
+      ]
+    },
+    "PDF-nagios": {
+      "nrpe": {
+        "only_from": [
+          "10.10.90.16",
+          "10.10.90.26",
+          "127.0.0.1"
+        ]
+      }
+    },
+    "PDF-snmpd": {
+      "v1rocommunity": [
+        "public",
+        "pvgpublic"
+      ]
+    },
+    "motd": {
+      "group": "Dataops",
+      "email": "pvgadm@pdf.com"
+    },
+    "ntp": {
+      "servers": [
+        "ntp1.pvg.pdf.com",
+        "ntp2.pvg.pdf.com",
+        "ntp3.pvg.pdf.com"
+      ]
+    },
+    "nis": {
+      "domain": "pvg",
+      "servers": [
+        {
+          "hostname": "nis3.pvg.pdf.com",
+          "ip": "10.10.90.10"
+        },
+        {
+          "hostname": "nis4.pvg.pdf.com",
+          "ip": "10.10.90.11"
+        }
+      ]
+    },
+    "nsswitch": {
+      "password": "files nis",
+      "group": "files nis",
+      "shadow": "files nis",
+      "hosts": "files nis dns",
+      "netgroup": "files nis"
+    }
+  },
+  "override_attributes": {
+
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[PDF-generic]",
+    "recipe[PDF-nis]",
+    "recipe[PDF-autofs-pvg]",
+    "recipe[PDF-motd]",
+    "recipe[PDF-snmpd::snmpd_centos]",
+    "recipe[PDF-nagios]",
+    "recipe[PDF-OMSA]"
+  ],
+  "env_run_lists": {
+
+  }
+}
