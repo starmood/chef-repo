@@ -7,7 +7,7 @@
 
 case node['platform']
 when 'redhat', 'centos'
-  if node['dmi']['system']['manufacturer'] && case node['dmi']['system']['product_name']
+  if node['dmi']['system']['manufacturer'] && node['dmi']['system']['product_name']
       case node['dmi']['system']['manufacturer']
       when /Dell/i
         case node['dmi']['system']['product_name']
