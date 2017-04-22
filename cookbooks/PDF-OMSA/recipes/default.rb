@@ -7,7 +7,9 @@
 
 case node['platform']
 when 'redhat', 'centos'
-  if node['dmi']['system']['manufacturer'] && node['dmi']['system']['product_name']
+  unless node['dmi']['system']        # sometimes, dmi attribute hash is empty
+      Chef::Log.info( "PDF-OMSA: Cannot detect hardware model." ) 
+  else
       case node['dmi']['system']['manufacturer']
       when /Dell/i
         case node['dmi']['system']['product_name']
@@ -51,8 +53,6 @@ when 'redhat', 'centos'
         Chef::Log.info( "PDF-OMSA: Only support Dell hardware." ) 
         return
       end
-  else
-    Chef::Log.info( "PDF-OMSA: Cannot detect hardware model." ) 
   end
 else
         Chef::Log.info( "PDF-OMSA: Only Redhat-based systems are supported at this time." )
