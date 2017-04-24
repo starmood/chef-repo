@@ -1,6 +1,5 @@
 # PDF-generic cookbook
 
-[![Cookbook Version](https://img.shields.io/cookbook/v/chef-server.svg)]
 
 This cookbook should be the first cookbook on the run list for any PDF newly installed machine.
 It will configure following parts
@@ -28,14 +27,13 @@ It will configure following parts
 
 - domain:  Supports "pvg"/"pvg.pdf.com", "pdfs"/"pdf.com"
 
-- * ["ntp"]["servers"]:  List of ntp servers, this attribute is for "ntp" cookbook
-
-
-## Authors
-
-- Author: Harry Chen
+- \* ["ntp"]["servers"]:  List of ntp servers, this attribute is for "ntp" cookbook
 
 
 ## Recipes
 
 ### default
+
+## Authors
+
+- Author: Harry Chen
