@@ -1,4 +1,5 @@
-# PDF-motd
+# PDF-motd cookbook
 
-TODO: Enter the cookbook description here.
+This cookbook is to set /etc/motd and /etc/motd.warning
+
 
