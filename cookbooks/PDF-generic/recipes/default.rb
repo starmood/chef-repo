@@ -61,11 +61,34 @@ directory '/root/.ssh' do
 	action :create
 end
 
-template "/root/.ssh/authorized_keys" do
-	source "authorized_keys_root.erb"
-	owner "root"
-	group "root"
-	mode "0600"
+case node["PDF-generic"]["domain"]
+when 'pdfs','pdf.com'
+
+	template "/root/.ssh/authorized_keys" do
+		source "authorized_keys_pdfs_root.erb"
+		owner "root"
+		group "root"
+		mode "0600"
+	end
+
+when 'pvg','pvg.pdf.com'
+
+	template "/root/.ssh/authorized_keys" do
+		source "authorized_keys_pvg_root.erb"
+		owner "root"
+		group "root"
+        	mode "0600"
+	end
+
+else 
+ 
+	template "/root/.ssh/authorized_keys" do
+		source "authorized_keys_pdfs_root.erb"
+		owner "root"
+		group "root"
+		mode "0600"
+	end
+
 end
 
 ### 5. set NTP servers
