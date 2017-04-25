@@ -33,7 +33,7 @@ when 'redhat', 'centos'
 	end
 
         link '/opt/nagios' do
-                to '/tools/pvglocal/nagios/linux_2.6_x64_rh5'
+                to node['PDF-nagios']['nrpe']['path']
 
         end
 
