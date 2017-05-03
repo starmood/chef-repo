@@ -10,13 +10,13 @@ case node['platform']
 when 'redhat', 'centos'
 	case node['platform_version'].to_i
 	when 5,6
-               %w{sendmail sendmail-cf}.each do |package|
+                %w{sendmail sendmail-cf}.each do |package|
                   package package do
                         action :install
                   end
                 end
 
-		remote_file "/etc/mail/sendmail.mc.beforeChef.#{current_time}"
+		remote_file "/etc/mail/sendmail.mc.beforeChef.#{current_time}" do
 			source 'file:///etc/mail/sendmail.mc'
 			action :create
 		end
@@ -42,7 +42,7 @@ when 'redhat', 'centos'
 		  end
 		end
 	when 7
-               %w{postfix}.each do |package|
+                %w{postfix}.each do |package|
                   package package do
                         action :install
                   end
@@ -65,18 +65,17 @@ when 'redhat', 'centos'
 		return
 	end
 
-	execute 'm4' do
-		command 'm4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf'
-		action :nothing
-	end
-
-	execute 'newaliases' do
-		command 'newaliases'
-		action :nothing
-	end
-
 else
 	Chef::Log.info( "PDF-smtp: Only Redhat-based systems are supported at this time." )
 	return
+end
 
+execute 'm4' do
+	command 'm4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf'
+	action :nothing
+end
+
+execute 'newaliases' do
+	command 'newaliases'
+	action :nothing
 end
