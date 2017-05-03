@@ -52,21 +52,21 @@ end
 
 
 execute 'pam_login' do
-        command 'sed -e '/securetty.so/s/^/#/' -i.orig /etc/pam.d/login'
+        command "sed -e '/securetty.so/s/^/\#/' -i.orig /etc/pam.d/login"
         action :nothing
 end
 
 execute 'pam_remote' do
-        command 'sed -e '/securetty.so/s/^/#/' -i.orig /etc/pam.d/remote'
+        command "sed -e '/securetty.so/s/^/\#/' -i.orig /etc/pam.d/remote"
         action :nothing
 end
 
 execute 'pam_rlogin' do
-        command 'sed -e '/securetty.so/s/^/#/' -i.orig /etc/pam.d/rlogin'
+        command "sed -e '/securetty.so/s/^/\#/' -i.orig /etc/pam.d/rlogin"
         action :nothing
 end
 
 execute 'pam_rsh' do
-        command 'sed -e '/securetty.so/s/^/#/' -i.orig /etc/pam.d/rsh'
+        command "sed -e '/securetty.so/s/^/\#/' -i.orig /etc/pam.d/rsh"
         action :nothing
 end
