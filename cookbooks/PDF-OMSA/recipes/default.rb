@@ -21,16 +21,15 @@ when 'redhat', 'centos'
     		        mode "0644"
     		end
 
-                    %w{srvadmin-all}.each do |package|
-
-                      package package do
-                            action :install
-    			timeout 5400
-                      end
-                    end
+                package 'srvadmin-all' do
+                        action :install
+			timeout 5400
+			notifies :run, 'execute[start_omsa]', :immediately
+                end
 
     		execute 'start_omsa' do
     			command '/opt/dell/srvadmin/sbin/srvadmin-services.sh start'
+			action :nothing
     		end
 
     		%w{snmpd}.each do |service|
