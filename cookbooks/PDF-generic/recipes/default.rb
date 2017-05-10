@@ -93,3 +93,15 @@ end
 
 ### 5. set NTP servers
 include_recipe 'ntp'
+
+
+### 6. install neccesary packages 
+
+applications =  node["PDF-generic"]["install_package"]
+
+applications.each do |package|
+
+  package package do
+    action [ :install]
+  end
+end
