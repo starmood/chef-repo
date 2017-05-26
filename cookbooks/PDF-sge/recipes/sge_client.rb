@@ -10,6 +10,11 @@ when 'client'
 		group 'sge'
 		mode '0755'
 		action :create		
+		notifies :restart, "service[ypbind]", :immediately
+	end
+
+	service "ypbind" do
+	        action :nothing
 	end
 
 	case node['PDF-generic']['site']
