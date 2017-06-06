@@ -11,9 +11,9 @@ service "ypbind" do
 	action :nothing
 end
 
-service "ypbind-enable" do
-	service_name	'ypbind'
-	action :enable
+file '/tmp/for_restart_ypbind' do
+	content 'fake file'
 	notifies :restart, "service[ypbind]", :immediately
+
 end
 

@@ -18,9 +18,18 @@ when 'redhat', 'centos'
 		  end
 		end
 
-	when 6,7
+	when 6
 
-                %w{xinetd openssl openssl098e}.each do |package|
+                %w{xinetd openssl openssl098e.x86_64}.each do |package|
+
+                  package package do
+                        action :install
+                  end
+                end
+
+        when 7
+
+                %w{openssl openssl098e.x86_64}.each do |package|
 
                   package package do
                         action :install
@@ -37,25 +46,44 @@ when 'redhat', 'centos'
 
         end
 
-        template "/etc/xinetd.d/nrpe" do
-                source "nrpe.erb"
-                mode "0644"
-                owner "root"
-                group "root"
-                variables({
-                        only_from: node['PDF-nagios']['nrpe']['only_from']
-                }
-                )
-		notifies :restart, "service[xinetd]", :immediately
-        end
+	case node['platform_version'].to_i
+	when 5,6
+	        template "/etc/xinetd.d/nrpe" do
+	                source "nrpe.erb"
+	                mode "0644"
+	                owner "root"
+	                group "root"
+	                variables({
+	                        only_from: node['PDF-nagios']['nrpe']['only_from']
+	                }
+	                )
+			notifies :enable, "service[xinetd]"
+			notifies :restart, "service[xinetd]", :immediately
+	        end
+
+	when 7
+		template "/usr/lib/systemd/system/nrpe.service" do
+			source "nrpe.service.erb"
+			mode "0644"
+			owner "root"
+			group "root"
+			notifies :enable, "service[nrpe]"
+			notifies :restart, "service[nrpe]", :immediately
+		end
+	end
 
 else
 	Chef::Log.info( "PDF-Nagios: Only Redhat-based systems are supported at this time." )
 	return
 end
 
-
+# RH 5,6
 service "xinetd" do
+        action :nothing
+end
+
+# RH 7
+service "nrpe" do
         action :nothing
 end
 
@@ -66,6 +94,7 @@ ruby_block "insert_line" do
     file.write_file
   end
   #notifies :restart, "service[xinetd]", :immediately
+  notifies :enable, "service[xinetd]"
   notifies :restart, "service[xinetd]"
 end
 
