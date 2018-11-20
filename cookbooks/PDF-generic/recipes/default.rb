@@ -4,6 +4,17 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
+### 0. Install packages
+
+packages = node["PDF-generic"]["install_packages"]
+
+packages.each do |package|
+ 
+  package package do
+    action :install
+  end
+end
+
 ### 1. Disable services
 
 services = node["PDF-generic"]["disable_services"]
