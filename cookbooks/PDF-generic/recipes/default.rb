@@ -6,7 +6,7 @@
 
 ### 0. Install packages
 
-packages = node["PDF-generic"]["install_packages"]
+packages = node["PDF-generic"]["install_package"]
 
 packages.each do |package|
  
