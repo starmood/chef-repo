@@ -5,6 +5,29 @@
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
 ### 0. Install packages
+case node['platform']
+when 'redhat', 'centos'
+	case node['platform_version'].to_i
+
+
+	when 6
+		file "/etc/yum.repos.d/CentOS-Base.repo" do
+			action :delete
+			end
+			
+		template "/etc/yum.repos.d/PVG.repo" do
+			source "yum_centos6_repo_PVG.erb"
+			mode "0644"
+			owner "root"
+			group "root"
+				
+		end
+	end
+
+else
+	Chef::Log.info( "PDF-Nagios: Only change yum repo for CentOS6." )
+	return
+end
 
 packages = node["PDF-generic"]["install_package"]
 

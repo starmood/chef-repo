@@ -18,7 +18,7 @@ when 'redhat', 'centos'
         case node['platform_version'].to_i
 	when 5,6,7
 
-                %w{rsh telnet rsh-server telnet-server}.each do |package|
+                %w{xinetd rsh telnet rsh-server telnet-server}.each do |package|
                   package package do
                         action :install
                   end
